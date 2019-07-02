@@ -1,7 +1,7 @@
 # A Wholesome Square
 
 ## Description
-Square wants a healthy, prosper and long life. So he went to Dr.Rectangle, who told him to only eat black little squares from now on... Help Square eat as many little squares and avoid any type of color, diversity or fun whatsoever.
+Square wants a healthy, prosper and long life. So he went to Dr.Rectangle, who told him to only eat little black squares from now on... Help Square eat as many little squares and avoid any type of color, diversity or fun whatsoever.
 
 
 ## MVP (DOM - CANVAS)
