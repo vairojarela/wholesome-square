@@ -13,8 +13,10 @@ function main() {
   function createSplash() {
     var splashScreen = buildDOM(`
     <section class="splash">
+    <article class="splash-content">
     <h1>A Wholesome Square</h1>
     <button>Start</button>
+    </article>
     </section>
     `);
     var startButton = splashScreen.querySelector("button");
@@ -47,7 +49,7 @@ function main() {
         //ir hacia la derecha
         gameInstance.player.setDirection(1);
       }
-      console.log(event);
+      /* console.log(event); */
     });
   }
 

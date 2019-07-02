@@ -1,21 +1,20 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-body{
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   background: black;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: monospace;
   display: flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  
 }
 
 canvas {
@@ -28,11 +27,30 @@ canvas {
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  
+  height: 100vh;
+}
+
+.splash-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-direction: column;
   width: 300px;
   height: 300px;
-  border: 2px solid white;  
+  border: 2px solid white;
+}
 
+.splash h1 {
+  font-size: 1.5em;
+}
+
+.splash button {
+  border: 1px solid white;
+  width: 50px;
+  height: 50px;
+  background: black;
+  color: white;
 }
 
 section {

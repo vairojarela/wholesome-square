@@ -1,16 +1,16 @@
 "use strict";
 
 
-function Enemy(canvas, randomX) {
+function Enemy(canvas, randomX, enemyColor) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
-  this.width = 20;
-  this.height = 20;
+  this.width = 25;
+  this.height = 25;
   this.x = randomX;
   this.y = 0;
-  this.velocity = 10;
+  this.velocity = 11;
   this.direction = 1;
-  this.color = "red";
+  this.color = enemyColor;
 }
 
 Enemy.prototype.move = function() {

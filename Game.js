@@ -13,12 +13,13 @@ Game.prototype.startGame = function() {
   //inicializar player y enemies
   this.player = new Player(this.canvas);
 
-  var loop = () => {
-    if (Math.random() > 0.93) {
+  var loop = enemyColors => {
+    if (Math.random() > 0.9) {
       var randomX = Math.random() * this.canvas.width - 10;
-
-      var newEnemy = new Enemy(this.canvas, randomX);
-
+      var colors = ["red", "blue", "green", "yellow", "hotpink", "orange"];
+      var randomColor = Math.floor(Math.random() * colors.length);
+      var enemyColor = colors[randomColor];
+      var newEnemy = new Enemy(this.canvas, randomX, enemyColor);
       this.enemies.push(newEnemy);
     }
 
