@@ -26,7 +26,6 @@ The game is about touching or eating the little black squares with the big playe
 - Different difficulties
 
 ## Data structure
-Classes and methods definition.
 
  - main.js: only methods-> createSplash(), createGame(), createGameOver(), buildDOM()
  - Player.js: this.x, this.y(fixed), this.width, this.height, this.color, this.direction, this.speed. this.draw(), this.move(), this.checkBorders(), this.updateLives()
@@ -45,6 +44,19 @@ Definition of the different states and their transition (transition functions)
 ## Task
 Task definition in order of priority
 
+- create files (index.html, style.css, main.js, Game.js, Player.js, Enemy.js.
+- wireframe and game states (start->game->win/gameover->start)
+- create canvas
+- display Player on canvas
+- code movement of player, limited to widht of the canvas
+- generate an enemy
+- generate Item
+- generate multiple and random enemies
+- make enemies randomized colors
+- code collisions between Player and Enemy
+- substract life from player if collision happens
+- code collisions between Player and Item
+- do something about the item(initally food, add +1 life)
 
 ## Links
 
