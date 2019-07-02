@@ -1,6 +1,7 @@
 # A Wholesome Square
 
 ## Description
+
 Square wants a healthy, prosper and long life. So he went to Dr.Rectangle, who told him to only eat little black squares from now on... Help Square eat as many little squares and avoid any type of color, diversity or fun whatsoever.
 
 
@@ -30,6 +31,7 @@ The game is about touching or eating the little black squares with the big playe
  - main.js: only methods-> createSplash(), createGame(), createGameOver(), buildDOM()
  - Player.js: this.x, this.y(fixed), this.width, this.height, this.color, this.direction, this.speed. this.draw(), this.move(), this.checkBorders(), this.updateLives()
  - Enemy.js: this.x, this.y, this.width, this.height, this.color, this.direction, this.speed. this.draw(), this.move(), this.eliminateEnemy()
+ - Powerup.js: this.x, this.y, this.height, this.color, this.direction, this.speed, this.draw(), this.move(), this.eliminatePowerup()
 
 
 ## States y States Transitions
@@ -47,6 +49,7 @@ Task definition in order of priority
 - create files (index.html, style.css, main.js, Game.js, Player.js, Enemy.js.
 - wireframe and game states (start->game->win/gameover->start)
 - create canvas
+- create loop
 - display Player on canvas
 - code movement of player, limited to widht of the canvas
 - generate an enemy
