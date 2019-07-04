@@ -7,21 +7,23 @@ function Player(canvas) {
   this.height = 50;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - 100;
-  this.lives = 3;
-  this.velocity = 10;
+  this.lives = 10;
+  this.name = "";
+  this.score = 0;
+  this.velocity = 8;
   this.direction = 0;
   this.color = "white";
 }
 
 Player.prototype.move = function() {
   var leftCheck = this.x < 0;
-  var rightCheck = this.x + this.width >= this.canvas.width;
+  var rightCheck = this.x + this.width > this.canvas.width;
   if (leftCheck) {
     this.x = 0;
     this.direction = 0;
   }
   if (rightCheck) {
-    this.x = this.x + this.width;
+    this.x = this.canvas.width - this.width;
     this.direction = 0;
   } else {
     this.x = this.x + this.direction * this.velocity;
@@ -30,6 +32,11 @@ Player.prototype.move = function() {
 Player.prototype.draw = function() {
   this.ctx.fillStyle = this.color;
   this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  this.ctx.beginPath();
+  this.ctx.moveTo(0, this.canvas.height - 50);
+  this.ctx.lineTo(this.canvas.width, this.canvas.height - 50);
+  this.ctx.strokeStyle = 'white';
+  this.ctx.stroke();
 };
 
 Player.prototype.setDirection = function(newDirection) {

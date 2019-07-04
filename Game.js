@@ -9,12 +9,25 @@ function Game(canvas) {
   this.onGameOver = null;
 }
 
+Game.prototype.audio = function(sound) {
+  var audio = new Audio('title-screen.mp3');
+  if (sound === "play"){
+    audio.play();
+  }
+  if (sound === "stop"){
+    audio.pause();
+  }
+}
+
 Game.prototype.startGame = function() {
+  
   //inicializar player y enemies
   this.player = new Player(this.canvas);
+  /* this.audio("play"); */
 
   var loop = enemyColors => {
-    if (Math.random() > 0.9) {
+    this.player.score++;
+    if (Math.random() > 0.75) {
       var randomX = Math.random() * this.canvas.width - 10;
       var colors = ["red", "blue", "green", "yellow", "hotpink", "orange"];
       var randomColor = Math.floor(Math.random() * colors.length);
@@ -23,10 +36,10 @@ Game.prototype.startGame = function() {
       this.enemies.push(newEnemy);
     }
 
-    if (Math.random() > 0.96) {
+    if (Math.random() > 0.95) {
       var randomP = Math.random() * this.canvas.width - 10;
-      var newPowerup = new Powerup(this.canvas, randomP);
-      this.powerups.push(newPowerup);
+      var newPowerUp = new PowerUp(this.canvas, randomP);
+      this.powerups.push(newPowerUp);
     }
 
     //Update
@@ -58,6 +71,8 @@ Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 Game.prototype.draw = function() {
+/*   console.log(this.enemies);
+  console.log(this.powerups); */
   this.player.draw();
   this.enemies.forEach(function(enemy) {
     enemy.draw();
@@ -72,14 +87,18 @@ Game.prototype.draw = function() {
       var leftRight = this.player.x <= enemy.x + enemy.width;
       var bottomTop = this.player.y + this.player.height >= enemy.y;
       var topBottom = this.player.y <= enemy.y + enemy.height;
-      var counter = document.querySelector("span");
-      counter.innerText = this.player.lives;
-
+      var livesRemaining = "";
+      var livesRemaining = document.querySelector("span");
+      livesRemaining.innerText = this.player.lives;
+      var playerScore = document.querySelector("#player-score");
+      if (playerScore != null) {
+        playerScore.innerText = this.player.score;
+      }
       if (rightLeft && leftRight && bottomTop && topBottom) {
         this.enemies.splice(index, 1);
         this.player.lives--;
         if (this.player.lives === 0) {
-          this.isGameOver = true;
+          this.isGameOver = true;          
         }
       }
     });
@@ -92,6 +111,7 @@ Game.prototype.draw = function() {
       if (rightLeft && leftRight && bottomTop && topBottom) {
         this.powerups.splice(index, 1);
         this.player.lives++;
+        this.player.score = this.player.score + 50;
         /*   if (this.player.lives === 0) {
           this.isGameOver = true;
         } */
