@@ -79,18 +79,17 @@ function main() {
 
       /* console.log(event); */
     });
-  
   }
 
   function createGameOver() {
     var gameOver = buildDOM(`
       <section class="splash">
       <article class="splash-content">
-        <h1>GAME OVER</h1>
+        <h1>GAME OVER,<span id="player_name"></span></h1>
         <button>Restart</button>
-        <button id="reset">Reset Highscores</button>
+        <button id="reset">Reset</button>
         <p></p>
-        <p>Your score was: <span></span></p>
+        <p>Your score was: <span id="player_score"></span></p>
         <table>
           <tr>
             <th>#</th>
@@ -98,36 +97,73 @@ function main() {
             <th>Score</th>
           </tr>
           <tr>
-          <td>1</td>
-          <td></td>
-          <td></td>
+          <td id="place1">1</td>
+          <td id="name1"></td>
+          <td id="score1"></td>
           </tr>
         </table>
         </article>
       </section>
     `);
-
+    
     var scoreArray = localStorage.getItem("player");
     var newPlayer = { name: this.player.name, score: this.player.score };
-    if (scoreArray === null ){
+    var playerN = gameOver.querySelector("#player_name");
+    playerN.innerText = this.player.name;
+    if (scoreArray === null) {
       scoreArray = [];
     } else {
       scoreArray = JSON.parse(scoreArray);
     }
     scoreArray.push(newPlayer);
+    console.log(scoreArray);
+
+    scoreArray.sort(function(a, b) {
+      return a.score - b.score;
+    });
+    var table = gameOver.querySelector('table');
+    console.log(table);
+   /*  for (var i = 0; i < scoreArray.length; i++){
+      table.appendChild(`<tr>
+      <td id="place1">1</td>
+      <td id="name1"></td>
+      <td id="score1"></td>
+      </tr>`);
+    } */
+    /* var name1 = gameOver.querySelector("#name1");
+    name1.innerText = scoreArray[0].name;
+    var score1 = gameOver.querySelector("#score1");
+    score1.innerText = scoreArray[0].score;
+    var name2 = gameOver.querySelector("#name2");
+    name2.innerText = scoreArray[0].name;
+    var score2 = gameOver.querySelector("#score2");
+    score2.innerText = scoreArray[0].score;
+    var name3 = gameOver.querySelector("#name3");
+    name3.innerText = scoreArray[0].name;
+    var score3 = gameOver.querySelector("#score3");
+    score3.innerText = scoreArray[0].score; */
+    
+
+    scoreArray.reverse();
+    console.log(scoreArray.length);
+
+/*     name.innerText = scoreArray[i].name;
+    score.innerText = scoreArray[i].score; */
+
     localStorage.setItem("player", JSON.stringify(scoreArray));
 
     /* var playerProfile = JSON.parse(playerProfile);  */
-    
-    var scoreFinal = gameOver.querySelector("span");
+
+    var scoreFinal = gameOver.querySelector("#player_score");
     scoreFinal.innerText = this.player.score;
+
     var reset = function() {
       window.localStorage.clear();
       //add clean the table here later
     };
     var restartButton = gameOver.querySelector("button");
     restartButton.addEventListener("click", createSplash);
-    
+
     var resetButton = gameOver.querySelector("#reset");
     resetButton.addEventListener("click", reset);
   }

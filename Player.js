@@ -7,10 +7,10 @@ function Player(canvas) {
   this.height = 50;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - 100;
-  this.lives = 10;
+  this.lives = 5;
   this.name = "";
   this.score = 0;
-  this.velocity = 8;
+  this.velocity = 9;
   this.direction = 0;
   this.color = "white";
 }

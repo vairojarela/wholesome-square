@@ -27,9 +27,9 @@ Game.prototype.startGame = function() {
 
   var loop = enemyColors => {
     this.player.score++;
-    if (Math.random() > 0.75) {
+    if (Math.random() > 0.5) {
       var randomX = Math.random() * this.canvas.width - 10;
-      var colors = ["red", "blue", "green", "yellow", "hotpink", "orange"];
+      var colors = ["red", "blue", "green", "yellow", "hotpink", "orange", "aqua"];
       var randomColor = Math.floor(Math.random() * colors.length);
       var enemyColor = colors[randomColor];
       var newEnemy = new Enemy(this.canvas, randomX, enemyColor);

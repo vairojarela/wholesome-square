@@ -60,9 +60,11 @@ input:valid {
 
 .float-left {
   float: left;
+  font-size: 1.2em;
 }
 .float-right {
   float: right;
+  font-size: 1.2em;
 }
 
 .splash button {
@@ -82,8 +84,38 @@ button:hover {
 
 .game-title {
   text-align: center;
+  font-size: 1.5em;
 }
 
 section {
   height: 100vh;
+}
+
+@media(min-width: 800px){
+  
+.splash-content {
+
+  width: 500px;
+  height: 500px;
+  border: 1px solid white;
+
+}
+.splash h1{
+  font-size: 3em;
+}
+
+}
+@media(min-width: 1200px){
+  
+.splash-content {
+
+  width: 800px;
+  height: 800px;
+  border: 1px solid white;
+
+}
+.splash h1{
+  font-size: 4em;
+}
+
 }
