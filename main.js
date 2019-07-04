@@ -88,24 +88,13 @@ function main() {
         <h1>GAME OVER,<span id="player_name"></span></h1>
         <button>Restart</button>
         <button id="reset">Reset</button>
-        <p></p>
-        <p>Your score was: <span id="player_score"></span></p>
-        <table>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-          </tr>
-          <tr>
-          <td id="place1">1</td>
-          <td id="name1"></td>
-          <td id="score1"></td>
-          </tr>
-        </table>
+        <p class="highscores">Highscores:</p>
+        <p class="highscores">Your score was: <span id="player_score"></span></p>
+        <ul id="highscores">
+        </ul>
         </article>
       </section>
     `);
-    
     var scoreArray = localStorage.getItem("player");
     var newPlayer = { name: this.player.name, score: this.player.score };
     var playerN = gameOver.querySelector("#player_name");
@@ -121,34 +110,16 @@ function main() {
     scoreArray.sort(function(a, b) {
       return a.score - b.score;
     });
-    var table = gameOver.querySelector('table');
-    console.log(table);
-   /*  for (var i = 0; i < scoreArray.length; i++){
-      table.appendChild(`<tr>
-      <td id="place1">1</td>
-      <td id="name1"></td>
-      <td id="score1"></td>
-      </tr>`);
-    } */
-    /* var name1 = gameOver.querySelector("#name1");
-    name1.innerText = scoreArray[0].name;
-    var score1 = gameOver.querySelector("#score1");
-    score1.innerText = scoreArray[0].score;
-    var name2 = gameOver.querySelector("#name2");
-    name2.innerText = scoreArray[0].name;
-    var score2 = gameOver.querySelector("#score2");
-    score2.innerText = scoreArray[0].score;
-    var name3 = gameOver.querySelector("#name3");
-    name3.innerText = scoreArray[0].name;
-    var score3 = gameOver.querySelector("#score3");
-    score3.innerText = scoreArray[0].score; */
-    
+    var li = gameOver.querySelector('li');
+   scoreArray.reverse();
+    var ul = document.createElement('ul');
+    document.getElementById('highscores').appendChild(ul);
+    scoreArray.forEach(function(score){
+			var li = document.createElement('li');
+			ul.appendChild(li);
+			li.innerText = score.name + "  " + score.score;
+		});
 
-    scoreArray.reverse();
-    console.log(scoreArray.length);
-
-/*     name.innerText = scoreArray[i].name;
-    score.innerText = scoreArray[i].score; */
 
     localStorage.setItem("player", JSON.stringify(scoreArray));
 
@@ -159,6 +130,8 @@ function main() {
 
     var reset = function() {
       window.localStorage.clear();
+      var ul = gameOver.querySelector("#highscores");
+      ul.innerHTML = "";
       //add clean the table here later
     };
     var restartButton = gameOver.querySelector("button");

@@ -7,23 +7,15 @@ function Game(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
   this.onGameOver = null;
+  this.audio = new Audio('title-screen.mp3');
 }
 
-Game.prototype.audio = function(sound) {
-  var audio = new Audio('title-screen.mp3');
-  if (sound === "play"){
-    audio.play();
-  }
-  if (sound === "stop"){
-    audio.pause();
-  }
-}
 
 Game.prototype.startGame = function() {
   
   //inicializar player y enemies
   this.player = new Player(this.canvas);
-  /* this.audio("play"); */
+  this.audio.play();
 
   var loop = enemyColors => {
     this.player.score++;
@@ -98,6 +90,7 @@ Game.prototype.draw = function() {
         this.enemies.splice(index, 1);
         this.player.lives--;
         if (this.player.lives === 0) {
+          this.audio.pause();
           this.isGameOver = true;          
         }
       }
@@ -121,7 +114,9 @@ Game.prototype.draw = function() {
 };
 
 Game.prototype.gameOverCallback = function(callback) {
+  
   this.onGameOver = callback;
+
 };
 
 // MINIMO 3 PANTALLAS (START - GAME -OVER)
