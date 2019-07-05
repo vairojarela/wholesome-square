@@ -13,32 +13,53 @@ function main() {
     <article class="splash-content">
     <h1>A Wholesome 🅂🅀🅄🄰🅁🄴</h1>
     <button>Start</button>
+    <button id="howto">How To</button>
     </article>
     </section>
     
     `);
     var startButton = splashScreen.querySelector("button");
+    var howToButton = document.getElementById("howto");
     startButton.addEventListener("click", createIntro);
+    howToButton.addEventListener("click", createHowTo);
   }
 
   function createIntro() {
     var introScreen = buildDOM(`
     <section class="splash">
     <article class="splash-content">
-
-    <input placeholder="Your square's name" type="text" id="userName" required></input>
+    <input placeholder="Your name" type="text" id="name" required="required"/>
+    <div class="bar"></div>
     <button>Play</button>
+    
 
     </article>
     </section>
     `);
-    document.getElementById("userName").focus();
+    document.getElementById("name").focus();
     var playButton = introScreen.querySelector("button");
     playButton.addEventListener("click", createGame);
   }
 
+  function createHowTo() {
+    var howToScreen = buildDOM(`
+    <section class="splash">
+    <article class="splash-content">
+    <p class="howto-text">This is the story of Mr. Cuadrado, a regular and plain square that went to his doctor, Dr. Rectángulo, who gave him some very unfortunate news. He'll never be able to eat his favourite dish: <span class="rainbow">colored squares.</span></p>
+    <p class="howto-text">If he does this more than the amount of lives he has, <strong>he'll die.</strong></p>
+    <p class="howto-text">From now on, the doctor said, you'll only be able to eat white squares, kinda like yourself but smaller.</p>
+    <p class="howto-text"><small>Note: Canibalism is totally normal in Square planet.</small></p>
+    <button>Back</button>
+
+    </article>
+    </section>
+    `);
+    var backButton = howToScreen.querySelector("button");
+    backButton.addEventListener("click", createSplash);
+  }
+
   function createGame() {
-    var user = document.getElementById("userName").value;
+    var user = document.getElementById("name").value;
     /* var newUser = { name: user.value };
     var scoreArray = JSON.parse(localStorage.getItem("player"));
     if (scoreArray === null ){
@@ -76,8 +97,6 @@ function main() {
         //ir hacia la derecha
         gameInstance.player.setDirection(1);
       }
-
-      /* console.log(event); */
     });
   }
 
@@ -85,9 +104,9 @@ function main() {
     var gameOver = buildDOM(`
       <section class="splash">
       <article class="splash-content">
-        <h1>GAME OVER,<span id="player_name"></span></h1>
-        <button>Restart</button>
-        <button id="reset">Reset</button>
+        <h1>GAME OVER, <span id="player_name"></span></h1>
+        <button>Play Again</button>
+        <button id="reset">Reset Scores</button>
         <p class="highscores">Highscores:</p>
         <p class="highscores">Your score was: <span id="player_score"></span></p>
         <ul id="highscores">
@@ -105,26 +124,20 @@ function main() {
       scoreArray = JSON.parse(scoreArray);
     }
     scoreArray.push(newPlayer);
-    console.log(scoreArray);
-
     scoreArray.sort(function(a, b) {
       return a.score - b.score;
     });
-    var li = gameOver.querySelector('li');
-   scoreArray.reverse();
-    var ul = document.createElement('ul');
-    document.getElementById('highscores').appendChild(ul);
-    scoreArray.forEach(function(score){
-			var li = document.createElement('li');
-			ul.appendChild(li);
-			li.innerText = score.name + "  " + score.score;
-		});
-
+    var li = gameOver.querySelector("li");
+    scoreArray.reverse();
+    var ul = document.createElement("ul");
+    document.getElementById("highscores").appendChild(ul);
+    scoreArray.forEach(function(score) {
+      var li = document.createElement("li");
+      ul.appendChild(li);
+      li.innerText = score.name + "  " + score.score;
+    });
 
     localStorage.setItem("player", JSON.stringify(scoreArray));
-
-    /* var playerProfile = JSON.parse(playerProfile);  */
-
     var scoreFinal = gameOver.querySelector("#player_score");
     scoreFinal.innerText = this.player.score;
 
