@@ -7,28 +7,35 @@ function Game(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
   this.onGameOver = null;
-  this.audio = new Audio('title-screen.mp3');
+  this.audio = new Audio("title-screen.mp3");
 }
 
-
 Game.prototype.startGame = function() {
-  
   //inicializar player y enemies
   this.player = new Player(this.canvas);
   this.audio.play();
 
   var loop = enemyColors => {
     this.player.score++;
-    if (Math.random() > 0.5) {
+    if (Math.random() > 0.63) {
       var randomX = Math.random() * this.canvas.width - 10;
-      var colors = ["red", "blue", "green", "yellow", "hotpink", "orange", "aqua"];
+      var colors = [
+        "red",
+        "blue",
+        "green",
+        "yellow",
+        "hotpink",
+        "orange",
+        "aqua"
+      ];
       var randomColor = Math.floor(Math.random() * colors.length);
       var enemyColor = colors[randomColor];
       var newEnemy = new Enemy(this.canvas, randomX, enemyColor);
       this.enemies.push(newEnemy);
     }
 
-    if (Math.random() > 0.95) {
+   
+    if (Math.random() > 0.94) {
       var randomP = Math.random() * this.canvas.width - 10;
       var newPowerUp = new PowerUp(this.canvas, randomP);
       this.powerups.push(newPowerUp);
@@ -63,8 +70,6 @@ Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 Game.prototype.draw = function() {
-/*   console.log(this.enemies);
-  console.log(this.powerups); */
   this.player.draw();
   this.enemies.forEach(function(enemy) {
     enemy.draw();
@@ -91,7 +96,7 @@ Game.prototype.draw = function() {
         this.player.lives--;
         if (this.player.lives === 0) {
           this.audio.pause();
-          this.isGameOver = true;          
+          this.isGameOver = true;
         }
       }
     });
@@ -105,27 +110,11 @@ Game.prototype.draw = function() {
         this.powerups.splice(index, 1);
         this.player.lives++;
         this.player.score = this.player.score + 50;
-        /*   if (this.player.lives === 0) {
-          this.isGameOver = true;
-        } */
       }
     });
   };
 };
 
 Game.prototype.gameOverCallback = function(callback) {
-  
   this.onGameOver = callback;
-
 };
-
-// MINIMO 3 PANTALLAS (START - GAME -OVER)
-//MINIMO DOS FUNCIONES CONTRUCTORAS (PLAYER - ENEMY)
-//DEMAS FUNCIONES SON EXTRAS
-//
-
-//BACKLOG
-//TO DO
-//DOING
-//QA
-//DONE

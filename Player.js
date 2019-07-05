@@ -35,7 +35,7 @@ Player.prototype.draw = function() {
   this.ctx.beginPath();
   this.ctx.moveTo(0, this.canvas.height - 50);
   this.ctx.lineTo(this.canvas.width, this.canvas.height - 50);
-  this.ctx.strokeStyle = 'white';
+  this.ctx.strokeStyle = "white";
   this.ctx.stroke();
 };
 

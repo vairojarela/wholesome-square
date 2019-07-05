@@ -48,6 +48,14 @@ ul{
   transform: translateY(-50%);
 }
 
+p{
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
 .splash h1 {
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
@@ -62,18 +70,19 @@ ul{
 
 .float-left {
   float: left;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 .float-right {
   float: right;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .splash button {
-  position: relative;
-  text-decoration: underline;
-  border: none;
-  width: auto;
+  display:inline-block;
+ /*  position: relative; */
+  margin: 20px 0px 10px 0px;
+  border: 1px white solid;
+  width: 150px;
   height: 70px;
   background: black;
   color: white;
@@ -84,28 +93,55 @@ ul{
   text-align: center;
   padding: 10px 20px 10px 20px;
 }
-/* 
+
+#doctor{
+  width: 300px;
+
+}
+#arrows{
+  width: 200px;
+
+}
+
 button:hover {
-  transform: scale(1.1);
-} */
+  background-color: white;
+  color: #000;
+ 
+} 
 
 
 
 .game-title {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 section {
   height: 100vh;
 }
 
-@media(min-width: 800px){
+@media(max-width: 500px){
+  
+
+
+  #doctor{
+    width: 150px;
+    height: 150px;
+  
+  }
+  #arrows{
+    width: 100px;
+    height: 100px;
+  
+  }
+}
+
+@media(min-width: 600px){
   
 .splash-content {
 
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   border: 1px solid white;
 
 }
@@ -119,7 +155,7 @@ p{
 }
 
 }
-@media(min-width: 1200px){
+@media(min-width: 900px){
   
 .splash-content {
 
@@ -131,6 +167,8 @@ p{
 .splash h1{
   font-size: 4em;
 }
+
+
 
 }
 
@@ -150,11 +188,15 @@ input {
   border: none;
   border-radius: 0;
   color: white;
-  background: #333;
+  background: #000;
   font-size: 1.5em;
   transition: .3s ease;
   text-align: center;
+  margin: 10px 0 10px 0;;
+
 }
+
+
 input:valid ~ label {
   top: 0;
   font: 700 22px Roboto;
@@ -162,11 +204,6 @@ input:valid ~ label {
 }
 input:focus {
   outline: none;
-}
-input:focus ~ label {
-  top: 0;
-  font: 700 22px Roboto;
-  color: #2196f3;
 }
 input:focus ~ .bar:before {
   transform: translateX(0);

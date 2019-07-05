@@ -3,7 +3,7 @@
 function Enemy(canvas, randomX, enemyColor) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
-  
+
   this.width = 25;
   this.height = 25;
   this.x = randomX;

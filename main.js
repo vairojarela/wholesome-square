@@ -39,15 +39,21 @@ function main() {
     document.getElementById("name").focus();
     var playButton = introScreen.querySelector("button");
     playButton.addEventListener("click", createGame);
-  }
+
+  };
 
   function createHowTo() {
     var howToScreen = buildDOM(`
     <section class="splash">
     <article class="splash-content">
-    <p class="howto-text">This is the story of Mr. Cuadrado, a regular and plain square that went to his doctor, Dr. Rectángulo, who gave him some very unfortunate news. He'll never be able to eat his favourite dish: <span class="rainbow">colored squares.</span></p>
+    <p class="howto-text">This is the story of Cuadrado, a regular and plain square who just went to the doctor, Dr. Rectángulo. He gave him some terrible news.</p>
+    <img id="doctor" src="cuadrado.png"/>
+    <p class="howto-text">He'll never be able to eat his favourite dish again: <span class="rainbow">colored squares.</span></p>
     <p class="howto-text">If he does this more than the amount of lives he has, <strong>he'll die.</strong></p>
-    <p class="howto-text">From now on, the doctor said, you'll only be able to eat white squares, kinda like yourself but smaller.</p>
+    <p class="howto-text">From now on, the doctor said, you'll only be able to eat <strong>white squares</strong>, kinda like yourself, but <small>smaller</small>.</p>
+    <p class="howto-text" style="text-decoration: underline;">Help Cuadrado survive for as long as possible!</p>
+    <p class="howto-text">Also, you can only move left or right using the arrow keys.</p>
+    <img id="arrows" src="arrows.png"/>
     <p class="howto-text"><small>Note: Canibalism is totally normal in Square planet.</small></p>
     <button>Back</button>
 
@@ -60,14 +66,6 @@ function main() {
 
   function createGame() {
     var user = document.getElementById("name").value;
-    /* var newUser = { name: user.value };
-    var scoreArray = JSON.parse(localStorage.getItem("player"));
-    if (scoreArray === null ){
-      scoreArray = [];
-    } else
-    scoreArray.push(newUser);
-    localStorage.setItem("player", JSON.stringify(scoreArray));
- */
     var gameScreen = buildDOM(`
     <section>
     <p class="float-left">Lives: <span></span></p>
@@ -145,7 +143,6 @@ function main() {
       window.localStorage.clear();
       var ul = gameOver.querySelector("#highscores");
       ul.innerHTML = "";
-      //add clean the table here later
     };
     var restartButton = gameOver.querySelector("button");
     restartButton.addEventListener("click", createSplash);
