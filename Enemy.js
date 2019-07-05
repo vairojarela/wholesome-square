@@ -8,7 +8,7 @@ function Enemy(canvas, randomX, enemyColor) {
   this.height = 25;
   this.x = randomX;
   this.y = 0;
-  this.velocity = 14;
+  this.velocity =11;
   this.direction = 1;
   this.color = enemyColor;
 }

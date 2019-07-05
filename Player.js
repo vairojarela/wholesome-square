@@ -10,7 +10,7 @@ function Player(canvas) {
   this.lives = 5;
   this.name = "";
   this.score = 0;
-  this.velocity = 9;
+  this.velocity = 12;
   this.direction = 0;
   this.color = "white";
 }

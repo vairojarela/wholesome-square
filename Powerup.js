@@ -7,7 +7,7 @@ function PowerUp(canvas, randomX) {
   this.height = 10;
   this.x = randomX;
   this.y = 0;
-  this.velocity = 10;
+  this.velocity = 14;
   this.direction = 1;
   this.color = "white";
   this.invincible = false;

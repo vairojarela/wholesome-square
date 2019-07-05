@@ -17,7 +17,7 @@ Game.prototype.startGame = function() {
 
   var loop = enemyColors => {
     this.player.score++;
-    if (Math.random() > 0.63) {
+    if (Math.random() > 0.50) {
       var randomX = Math.random() * this.canvas.width - 10;
       var colors = [
         "red",
@@ -26,7 +26,9 @@ Game.prototype.startGame = function() {
         "yellow",
         "hotpink",
         "orange",
-        "aqua"
+        "aqua",
+        "purple",
+        "lime"
       ];
       var randomColor = Math.floor(Math.random() * colors.length);
       var enemyColor = colors[randomColor];
@@ -35,7 +37,7 @@ Game.prototype.startGame = function() {
     }
 
    
-    if (Math.random() > 0.94) {
+    if (Math.random() > 0.92) {
       var randomP = Math.random() * this.canvas.width - 10;
       var newPowerUp = new PowerUp(this.canvas, randomP);
       this.powerups.push(newPowerUp);
@@ -88,6 +90,9 @@ Game.prototype.draw = function() {
       var livesRemaining = document.querySelector("span");
       livesRemaining.innerText = this.player.lives;
       var playerScore = document.querySelector("#player-score");
+      if (enemy.y > this.canvas.height-50){
+        this.enemies.splice(index, 1);
+      }
       if (playerScore != null) {
         playerScore.innerText = this.player.score;
       }
@@ -99,6 +104,7 @@ Game.prototype.draw = function() {
           this.isGameOver = true;
         }
       }
+  
     });
     this.powerups.forEach((powerup, index) => {
       var rightLeft = this.player.x + this.player.width >= powerup.x;
